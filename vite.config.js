@@ -27,4 +27,5 @@ export default defineConfig({
       },
     },
   },
+  assetsInclude: ['src/json/tents.json'],
 });
