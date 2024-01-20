@@ -45,10 +45,14 @@ export default class ProductDetails {
       cart = [];
     }
   
-   
-    cart.push(this.product);
-  
-   
+    let existingItem = cart.find(item => item.Id === this.product.Id);
+    if(existingItem){
+      existingItem.Quantitiy++;    
+    }
+    else {
+      this.product.Quantitiy = 1;
+      cart.push(this.product);
+    }   
     setLocalStorage('so-cart', cart);
   }
   renderProductDetails(selector) {
