@@ -25,5 +25,27 @@ export function setClick(selector, callback) {
 export function getParams(param) {
   const queryString = window.location.search;
   const urlParams = new URLSearchParams(queryString);
-  return urlParams.get('product');  
+  return urlParams.get('product');
+}
+
+export function renderListWithTemplate(
+  templateFn,
+  parentElement,
+  list,
+  position = "afterbegin",
+  clear = false
+) {
+  const htmlStrings = list.filter(product => isValidImageURL(product.Image)).map(templateFn);
+  // if clear is true we need to clear out the contents of the parent.
+  if (clear) {
+    parentElement.innerHTML = "";
+  }
+  parentElement.insertAdjacentHTML(position, htmlStrings.join(""));
+}
+
+// Hide tents that hasn´t an image on the images directory
+function isValidImageURL(url) {
+  const image = new Image();
+  image.src = url;
+  return image.naturalWidth !== 0;
 }
