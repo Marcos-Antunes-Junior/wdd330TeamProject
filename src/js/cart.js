@@ -1,16 +1,34 @@
 import { getLocalStorage } from './utils.mjs';
 
 
+function calculateTotalPrice() {
+  const cartItems = getLocalStorage('so-cart') || [];
+  let totalPrice = 0;
+  cartItems.forEach(item => {
+    totalPrice += parseFloat(item.FinalPrice);
+  });
+  return totalPrice;
 
+}
 function renderCartContents() {
-  
   const cartItems = getLocalStorage('so-cart') || [];
   console.log(cartItems)
-  const htmlItems = cartItems.map((item) => cartItemTemplate(item));
-  document.querySelector('.product-list').innerHTML = htmlItems.join('');
+  
+  if(cartItems.length === 0){
+  const emptyCartHtml = `<h2>Your cart is empty.</h2>`;
+  document.querySelector('.product-list').innerHTML = emptyCartHtml;
+  } else {
+    const htmlItems = cartItems.map((item) => cartItemTemplate(item));
+    document.querySelector('.product-list').innerHTML = htmlItems.join('');
+  
+    const totalPrice = calculateTotalPrice();
+    document.querySelector('.total-price').textContent = `Total price: $${totalPrice.toFixed(2)}`;
+  }
+
 }
 
 function cartItemTemplate(item) {
+  
   const newItem = `<li class="cart-card divider">
   <a href="#" class="cart-card__image">
     <img
