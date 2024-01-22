@@ -18,6 +18,8 @@ function productDetailsTemplate(product) {
     </div></section>`;
 }
 
+
+
 export default class ProductDetails {
   constructor(productId, dataSource) {
     this.productId = productId;
@@ -36,20 +38,9 @@ export default class ProductDetails {
       .addEventListener('click', this.addToCart.bind(this));
   }
   addToCart() {
-    
-    let cart = getLocalStorage('so-cart');
-  
-    
-    if (!Array.isArray(cart) || !cart) {
-     
-      cart = [];
-    }
-  
-   
-    cart.push(this.product);
-  
-   
-    setLocalStorage('so-cart', cart);
+    let cartItems = getLocalStorage('so-cart') || [];
+    cartItems.push(this.product);
+    setLocalStorage('so-cart', cartItems);
   }
   renderProductDetails(selector) {
     const element = document.querySelector(selector);
