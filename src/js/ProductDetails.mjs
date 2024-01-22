@@ -18,6 +18,8 @@ function productDetailsTemplate(product) {
     </div></section>`;
 }
 
+
+
 export default class ProductDetails {
   constructor(productId, dataSource) {
     this.productId = productId;
@@ -36,6 +38,7 @@ export default class ProductDetails {
       .addEventListener('click', this.addToCart.bind(this));
   }
   addToCart() {
+
     
     let cart = getLocalStorage('so-cart');
   
@@ -54,6 +57,7 @@ export default class ProductDetails {
       cart.push(this.product);
     }   
     setLocalStorage('so-cart', cart);
+
   }
   renderProductDetails(selector) {
     const element = document.querySelector(selector);
