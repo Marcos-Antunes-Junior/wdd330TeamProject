@@ -38,9 +38,26 @@ export default class ProductDetails {
       .addEventListener('click', this.addToCart.bind(this));
   }
   addToCart() {
-    let cartItems = getLocalStorage('so-cart') || [];
-    cartItems.push(this.product);
-    setLocalStorage('so-cart', cartItems);
+
+    
+    let cart = getLocalStorage('so-cart');
+  
+    
+    if (!Array.isArray(cart) || !cart) {
+     
+      cart = [];
+    }
+  
+    let existingItem = cart.find(item => item.Id === this.product.Id);
+    if(existingItem){
+      existingItem.Quantitiy++;    
+    }
+    else {
+      this.product.Quantitiy = 1;
+      cart.push(this.product);
+    }   
+    setLocalStorage('so-cart', cart);
+
   }
   renderProductDetails(selector) {
     const element = document.querySelector(selector);
