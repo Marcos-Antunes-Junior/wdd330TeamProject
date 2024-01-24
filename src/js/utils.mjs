@@ -25,7 +25,7 @@ export function setClick(selector, callback) {
 export function getParams(param) {
   const queryString = window.location.search;
   const urlParams = new URLSearchParams(queryString);
-  return urlParams.get(param);  
+  return urlParams.get(param);
 }
 
 export function renderListWithTemplate(
@@ -40,4 +40,28 @@ export function renderListWithTemplate(
     parentElement.innerHTML = "";
   }
   parentElement.insertAdjacentHTML(position, htmlStrings.join(""));
+}
+
+export function renderWithTemplate(template, parent, data, callback) {
+  parent.insertAdjacentHTML("afterbegin", template);
+  if(callback) {
+    callback(data);
+  }
+}
+
+export async function loadHeaderFooter(){
+  const header = await loadTemplate('/partials/header.html');
+  const footer = await loadTemplate('/partials/footer.html');
+  const headerContainer = qs('#main-header');
+  const footerContainer = qs('#main-footer');
+  headerContainer.innerHTML = header.innerHTML;
+  footerContainer.innerHTML = footer.innerHTML;
+}
+
+
+export async function loadTemplate(path) {
+  const html = await fetch(path).then((data)=> data.text());
+  const template = document.createElement('template');
+  template.innerHTML = html;
+  return template;
 }
