@@ -240,6 +240,40 @@ span {
   rotate: 10deg;
 }
 
+/*Main Page Icon Styles*/
+.product-grid{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 1em;
+  padding: 1em;
+  max-width: 1080px;
+  margin: auto;
+  list-style: none;
+}
+.product-grid li{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 1em;
+  text-align: center;
+  font-size: var(--small-font);
+}
+.product-grid li img{
+  width: 100%;
+  max-width: 200px;
+  height: auto;
+}
+.product-grid li a{
+  text-decoration: none;
+  color: var(--dark-grey);
+}
+.product-grid li:hover{
+  background-color: var(--light-grey);
+  border-radius: 10px;
+}
+
+
 #quantity::-webkit-outer-spin-button,
 #quantity::-webkit-inner-spin-button {
   -webkit-appearance: none;
