@@ -290,3 +290,16 @@ footer {
   font-size: var(--small-font);
   padding: 1em;
 }
+
+
+.search-results{
+  display: flex;
+    flex-wrap: wrap;
+}
+.search-results .product-list{
+  justify-content: start;
+}
+
+.search{
+  align-self:center;
+}
