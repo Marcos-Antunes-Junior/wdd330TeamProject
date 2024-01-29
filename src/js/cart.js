@@ -90,10 +90,11 @@ function renderCartContents() {
 }
 
 function cartItemTemplate(item) {
+  let imageSrc = item.Image || item.Images.PrimaryLarge;
   const newItem = `<li class="cart-card divider">
   <a href="#" class="cart-card__image">
     <img
-      src="${item.Image}"
+      src="${imageSrc}"
       alt="${item.Name}"
     />
   </a>

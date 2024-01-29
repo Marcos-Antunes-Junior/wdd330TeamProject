@@ -9,7 +9,7 @@ function convertToJson(res) {
 export default class ProductData {
   constructor(category) {
     this.category = category;
-    this.path = `../json/${this.category}.json`;
+    this.path = `/json/${this.category}.json`;
   }
   getData() {
     return fetch(this.path)
@@ -17,7 +17,18 @@ export default class ProductData {
       .then((data) => data);
   }
   async findProductById(id) {
-    const products = await this.getData();
+    let products = await this.getData();
+    if(products.Result){
+      products = products.Result;
+    }
     return products.find((item) => item.Id === id);
+  }
+
+  async findProductIdByName(name) {
+    let products = await this.getData();
+    if(products.Result){
+      products = products.Result;
+    }
+    return products.filter((item) => item?.Name?.toLowerCase()?.includes(name?.toLowerCase())).map(item => item.Id);
   }
 }
