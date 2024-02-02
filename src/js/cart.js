@@ -14,6 +14,12 @@ function renderCartContents() {
   const cartItems = getLocalStorage("so-cart") || [];
   console.log(cartItems);
 
+  // checkout button click evnet
+  document.querySelector(".checkout").addEventListener("click", (event) => {
+    event.preventDefault();
+    window.location.href = "/checkout/index.html";
+  });
+
   if (cartItems.length === 0) {
     const emptyCartHtml = `<h2>Your cart is empty.</h2>`;
     document.querySelector(".product-list").innerHTML = emptyCartHtml;
