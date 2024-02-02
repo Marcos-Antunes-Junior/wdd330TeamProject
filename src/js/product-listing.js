@@ -1,14 +1,11 @@
-/*import ProductData from "./ProductData.mjs";
-import ProductListing from "./ProductList.mjs";*/
-import {loadHeaderFooter } from './utils.mjs';
-
-/*
-const dataSource = new ProductData("tents");
-const element = document.querySelector(".product-list");
-const topTentIds = ["880RR", "985RF", "985PR", "344YJ"];
-const listing = new ProductListing("Tents", dataSource, element, topTentIds);
-
-listing.init();
-*/
+import { loadHeaderFooter, getParams } from "./utils.mjs";
+import ProductData from "./ProductData.mjs";
+import ProductListing from "./ProductList.mjs";
 
 loadHeaderFooter();
+const category = getParams("category");
+const dataSource = new ProductData(category);
+const element = document.querySelector(".product-list");
+const listing = new ProductListing(category, dataSource, element);
+
+listing.init();

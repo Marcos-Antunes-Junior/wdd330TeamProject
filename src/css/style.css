@@ -263,6 +263,38 @@ span {
   margin: 0 auto;
 }
 
+.product-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-rows: 1fr;
+}
+
+.product-grid li {
+  text-align: center;
+  list-style-type: none;
+}
+
+.product-grid h2 {
+  font-weight: bolder;
+  font-size: 18px;
+  color: black;
+}
+
+.product-grid a {
+  text-decoration: none;
+}
+
+.product-grid img {
+  width: 30%;
+  margin: 0 auto;
+}
+
+
+.all-products-list {
+  display: grid;
+  grid-template-columns: 1fr;
+}
+
 #quantity::-webkit-outer-spin-button,
 #quantity::-webkit-inner-spin-button {
   -webkit-appearance: none;
